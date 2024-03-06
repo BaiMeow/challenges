@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  qbittorrent:
+    build: qbittorrent
+    ports:
+      - 8080:8080
+    volumes:
+      - ./flag1:/flag
+    networks:
+      subnet1:
+        ipv4_address: "100.64.43.3"
+
+  aria2:
+    build: aria2
+    networks:
+      subnet1:
+        ipv4_address: "100.64.43.4"
+    volumes:
+      - ./flag2:/flag
+    ports:
+      - 6800:6800
+      - 22:22
+  
+  nginx:
+    build: nginx
+    networks:
+      subnet1:
+        ipv4_address: "100.64.43.2"
+    ports:
+      - 80:80
+
+networks:
+  subnet1:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "100.64.43.0/24"
+

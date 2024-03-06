@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hgame WebVPN</title>
+</head>
+
+<body>
+    <form class="form">
+        <h1 class="title">Hgame WebVPN</h1>
+        <div>
+            <label>username:</label>
+            <input class="item" type="text" name="username" placeholder="username" value="username" required>
+        </div>
+        <div>
+            <label>password:</label>
+            <input class="item" type="password" name="password" placeholder="username" value="password" required>
+        </div>
+        <input class="button" type="button" onclick="login()" value="login">
+    </form>
+    <script>
+        function login() {
+            var username = document.getElementsByName('username')[0].value;
+            var password = document.getElementsByName('password')[0].value;
+            fetch('/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            }).then(res => {
+                if (res.status !== 200) {
+                    (async () => {
+                        alert(await res.text());
+                    })();
+                    return;
+                }
+                window.location.href = '/home';
+            })
+        }
+    </script>
+    <style>
+        body{
+            margin: 0px;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .item{
+            margin: 10px;
+        }
+    </style>
+</body>
+
+</html>

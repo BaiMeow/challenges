@@ -1,0 +1,11 @@
+server:
+  noAdminLogin: true
+database:
+  user: root
+  password: root
+  host: 127.0.0.1
+  port: 3306
+update:
+  enabled: true
+  url: http://localhost:5000/changed
+  interval: 1

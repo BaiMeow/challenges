@@ -1,0 +1,39 @@
+html 
+    head
+        title Hgame WebVPN
+    body
+        div(class='title') 
+            h1 Hgame WebVPN
+            h2(class='title-right') Login as #{username}
+        div(class='links')
+            each host in strategy
+                a(href='/proxy?url=http://'+host.host class='link' class=host.allow?'':'link-disabled')= host.host
+        style.
+            .body {
+                margin:0px
+            }
+            .title{
+                display: flex;
+                justify-content: flex-end;
+            }
+            .title-right{
+                margin-left: auto; 
+            }
+            .link-disabled{
+                color: #999;
+                pointer-events: none;
+            }
+            .link{
+                font-size: large;
+                text-decoration: none;
+                padding: 10px;
+            }
+            .link:hover{
+                text-decoration: underline;
+                background-color: #f0f0f0;
+            }
+            .links{
+                display: flex;
+                flex-direction: column;
+                margin-top: 20px;
+            }

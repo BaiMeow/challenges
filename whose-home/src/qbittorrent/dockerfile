@@ -1,0 +1,7 @@
+FROM lscr.io/linuxserver/qbittorrent:4.5.5
+
+COPY qBittorrent.conf /qBittorrent.conf
+
+RUN chmod u+s /usr/bin/iconv
+
+ENTRYPOINT mv qBittorrent.conf /config/qBittorrent.conf & /init
